@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { addTodo } from '../features/todo/todoSlice';
+import toast from 'react-hot-toast';
 
 const AddTodo = () => {
 
@@ -14,17 +15,18 @@ const AddTodo = () => {
     e.preventDefault();
  
     if(name && time){
-      dispatch(
-        addTodo({
-          name: name,
-          time: time
+      dispatch(addTodo({
+        name: name,
+        time: time
       }));
+
+      toast.success("Todo Added Successfully..!")
 
       setName("");
       setTime("");
     }
     else{
-      alert("Enter value in both text fields..!")
+      toast.error("Enter value in both text fields..!")
     }
 
   }
